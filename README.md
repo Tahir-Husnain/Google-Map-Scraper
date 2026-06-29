@@ -1,85 +1,207 @@
-# Google Maps Scraper  
+# Google Maps Scraper
 
-A lightweight, customizable web scraper built with **Playwright** to extract business listings from Google Maps. Perfect for gathering contact details, addresses, ratings, and more.  
+A lightweight and customizable Google Maps scraping tool built with Python and Playwright. This project automates the extraction of business listings, contact information, ratings, addresses, and other publicly available metadata from Google Maps search results.
 
-**Note:** This project is for **educational purposes only**. Always respect Google's Terms of Service and scraping policies.  
+Designed for lead generation, market research, local SEO analysis, and business intelligence workflows.
 
----
-
-## 📂 Output Examples  
-The data is saved in a folder named `GMaps Data` in a folder of the date the script was executed.
-Check the generated files to understand the data structure:  
-- **`niche in place.csv`**  
-- **`niche in place.xlsx`**  
-As you specified in either the command or the txt file (niche and place).
-
-Each entry includes:  
-- Business name  
-- Rating (avg. and count)  
-- Contact info (phone, website)  
-- Address & location details  
-- Additional metadata (reviews, features, etc.)  
+> **Disclaimer:**
+> This project is intended for educational and research purposes only. Users are responsible for complying with Google's Terms of Service and all applicable laws and regulations.
 
 ---
 
-## ⚙️ Installation  
+## Features
 
-### 1. Set Up a Virtual Environment (Recommended)  
+* Extract business names and categories
+* Collect ratings and review counts
+* Scrape phone numbers and websites
+* Retrieve addresses and location details
+* Export results to CSV and Excel formats
+* Batch processing with multiple search queries
+* Configurable result limits
+* Built with Playwright for reliable browser automation
+
+---
+
+## Tech Stack
+
+* Python
+* Playwright
+* Pandas
+* OpenPyXL
+
+---
+
+## Project Structure
+
 ```bash
-virtualenv venv  
-source venv/bin/activate  # Linux/Mac  
-venv\Scripts\activate     # Windows  
-```  
-
-### 2. Install Dependencies  
-```bash
-pip install -r requirements.txt  
-playwright install chromium  # Headless browser for scraping  
-```  
-
----
-
-## 🚀 How to Run  
-
-### Option 1: Single Search  
-```bash
-python3 main.py -s="<query>" -t=<result_count>  
-```  
-**Example:**  
-```bash
-python3 main.py -s="coffee shops in Seattle" -t=50  
-```  
-
-### Option 2: Batch Searches (via `input.txt`)  
-1. Add queries to **`input.txt`** (one per line):  
-   ```text
-   dentists in Boston, MA  
-   plumbers in Austin, TX  
-   ```  
-2. Run the scraper:  
-   ```bash
-   python3 main.py -t=30  # Optional: Limit results per query  
-   ```  
+google-maps-scraper/
+│
+├── main.py
+├── requirements.txt
+├── input.txt
+├── RunScraper.bat
+├── README.md
+├── .gitignore
+└── GMaps Data/
+```
 
 ---
 
-## 💡 Pro Tips  
+## Installation
 
-### Maximizing Results  
-Google Maps limits visible results (~120 per search). To bypass this:  
-- **Use granular queries** (e.g., split "US dentists" into city/state-level searches).  
-- **Combine keywords** (e.g., `"emergency dentist Chicago 24/7"`).  
+### 1. Clone the Repository
 
-### Customization  
-- Adjust **`main.py`** to scrape additional fields (e.g., hours, pricing).  
-- Modify **`playwright`** settings in `scraper.py` to change timeouts or headless mode.  
+```bash
+git clone https://github.com/Tahir-Husnain/Google-Map-Scrapper.git
+cd Google-Map-Scrapper
+```
+
+### 2. Create a Virtual Environment (Recommended)
+
+#### Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+#### Linux / macOS
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Install Playwright Browser
+
+```bash
+playwright install chromium
+```
 
 ---
 
-## ❓ Troubleshooting  
-- **Slow scraping?** Add delays between requests (edit `scraper.py`).  
-- **Missing data?** Google may block frequent requests—try proxies or reduce speed.  
+## Usage
 
---- 
+### Single Search Query
 
-**Happy scraping!** 🛠️
+```bash
+python main.py -s="coffee shops in Seattle" -t=50
+```
+
+### Batch Search Queries
+
+Add multiple search queries inside `input.txt`:
+
+```txt
+dentists in Boston, MA
+plumbers in Austin, TX
+restaurants in Chicago, IL
+```
+
+Run the scraper:
+
+```bash
+python main.py -t=30
+```
+
+---
+
+## Output
+
+The scraper automatically creates a dated folder inside:
+
+```bash
+GMaps Data/
+```
+
+Generated files include:
+
+* CSV exports
+* Excel spreadsheets
+* Structured business listing data
+
+Example output files:
+
+```bash
+coffee shops in Seattle.csv
+coffee shops in Seattle.xlsx
+```
+
+Each record may include:
+
+* Business Name
+* Rating
+* Review Count
+* Phone Number
+* Website
+* Address
+* Coordinates
+* Categories
+* Additional metadata
+
+---
+
+## Customization
+
+You can easily customize the scraper to:
+
+* Extract additional fields
+* Modify scraping speed
+* Change Playwright browser settings
+* Enable headless or visible browser mode
+* Add proxy support
+
+Configuration can be adjusted directly inside the source files.
+
+---
+
+## Performance Notes
+
+Google Maps may temporarily limit requests if scraping is too aggressive.
+
+Recommended practices:
+
+* Add delays between requests
+* Use smaller location-based queries
+* Avoid high-frequency scraping sessions
+* Use proxies if necessary
+
+---
+
+## Example Use Cases
+
+* Lead generation
+* Local business research
+* Competitor analysis
+* SEO prospecting
+* Market intelligence
+* Agency outreach workflows
+
+---
+
+## Future Improvements
+
+* Proxy rotation support
+* Multithreaded scraping
+* CAPTCHA handling
+* GUI dashboard
+* API integration
+* AI-powered data enrichment
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+Developed by Tahir Husnain
